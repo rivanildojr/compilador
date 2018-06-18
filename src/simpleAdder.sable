@@ -1,0 +1,182 @@
+//Especificacao da Linguagem
+
+Package simpleAdder ;
+
+Helpers
+	 /* Our helpers */ 
+	todos_caracteres = [0 .. 0xffff];
+	digit = ['0' .. '9'];
+	sp = ' ';
+	underscore = '_';
+	letra_minusculas = ['a' .. 'z'];
+	letra_maiusculas = ['A' .. 'Z'];
+	letra = letra_minusculas | letra_maiusculas;
+	caract_inicial = letra | underscore;
+	nl = 10;
+	tab = 9;
+	cr = 13;
+
+States
+	normal,
+	comentario;
+
+Tokens	
+	//Operadores
+	{normal} menos = '-';
+	{normal} mais = '+';
+	{normal} mult = '*';
+	{normal} div = '/';
+	{normal} mod = '%';
+
+	{normal} maior = '>';
+	{normal} menor = '<';
+	{normal} maior_igual = '>=';
+	{normal} menor_igual = '<=';
+	{normal} igual = '=';
+	{normal} diferente = '<>';
+	{normal} atribuicao = ':=';
+	
+	{normal} nao = 'nao';
+	{normal} e = 'e';
+	{normal} ou = 'ou';
+	{normal} xor = 'xor';
+
+	//Separadores
+	{normal} virgula = ',';
+	{normal} ponto_virgula = ';';
+	{normal} esq_colchete = '[';
+	{normal} dir_colchete = ']';
+	{normal} dois_pontos = ':';
+	{normal} esq_parentese = '(';
+	{normal} dir_parentese = ')';
+	{normal} aspar_simples = ''';
+	{normal} aspar_dupla = '"';
+
+	//Palavras Reservadas
+	{normal} programa = 'programa';
+	{normal} inicio = 'inicio';
+	{normal} fim_programa = 'fim.';
+
+	{normal} caractere = 'caractere';
+	{normal} inteiro = 'inteiro';
+	{normal} real = 'real';
+	{normal} string = 39[todos_caracteres - [nl + 39]]*39;
+
+	{normal} leia = 'leia';
+	{normal} escreva = 'escreva';
+
+	{normal} booleano = 'booleano';
+	{normal} verdadeiro = 'verdadeiro';
+	{normal} false = 'false';
+
+	{normal} se = 'se';
+	{normal} entao = 'entao';
+	{normal} senao = 'senao';
+	{normal} fim_se = 'fim se';
+
+	{normal} enquanto = 'enquanto';
+	{normal} faca = 'faca';
+	{normal} fim_enquanto = 'fim enquanto';
+
+	{normal} para = 'para';
+	{normal} de = 'de';
+	{normal} ate = 'ate';
+	{normal} passo = 'passo';
+	{normal} fim_para = 'fim para';
+
+	{normal} avalie = 'avalie';
+	{normal} caso = 'caso';
+	{normal} fim_avalie = 'fim avalie';
+
+	{normal} repita = 'repita';
+	{normal} fim_repita = 'fim repita';
+	
+	//Identificadores
+	{normal} n_inteiro = digit+ sp*;
+	{normal} n_real = '-'? digit+ ',' digit+ sp*;
+	id = caract_inicial (letra | digit | underscore)* (letra)*;
+	{normal} constante = 'constante';
+
+	//Comentarios
+	{normal} em_branco = (sp | tab | (nl | nl cr | cr))+;
+	
+	{normal -> comentario, comentario} comentario_bloco = '/*';
+	{normal-> comentario, comentario} comentario_bloco_fim = '*/';
+	{comentario} comentario_bloco_corpo = [todos_caracteres - ['*'+ '/']]*;
+	{comentario} estrela = '*';
+	{comentario} barra = '/';
+	{normal} comentario_linha = '//'[32 .. 255]*;
+
+Ignored Tokens
+	em_branco,
+	comentario_bloco,
+	comentario_bloco_fim,
+	comentario_linha;
+/*
+Productions
+
+	programa = programa id inicio declaracao_list? corpo? fim_programa;
+	
+	declaracao_list = declaracao+;
+	
+	declaracao = tipo dois_pontos var_list? var ponto_virgula 
+				| constante id valor ponto_virgula;
+				
+	var_v = var virgula;
+	
+	var_list = var_v+;
+	
+	tipo = real | inteiro | caractere | booleano;
+	
+	var = id | id esq_colchete n_inteiro dir_colchete;
+	
+	valor = string | n_inteiro | n_real;
+	
+	corpo = comando+;
+	
+	exp_v = exp virgula;
+	
+	exp_list = exp_v+;
+	
+	senao_se = senao comando+;
+	
+	caso_avalie = caso valor dois_pontos comando+;
+	
+	senao_avalie = senao dois_pontos comando+;
+	
+	comando = var atribuicao exp ponto_virgula
+			| leia esq_parentese var_list? var dir_parentese ponto_virgula
+			| escreva esq_parentese exp_list? exp dir_parentese ponto_virgula
+			| se esq_parentese exp_logica dir_parentese entao comando+ senao_se? fim_se ponto_virgula
+			| avalie esq_parentese exp dir_parentese caso_avalie? senao_avalie? fim_avalie ponto_virgula
+			| enquanto esq_parentese exp_logica dir_parentese faca comando+ fim_enquanto ponto_virgula
+			| repita comando+ ate esq_parentese exp_logica dir_parentese ponto_virgula
+			| para var de n_inteiro ate n_inteiro faca comando+ fim_para ponto_virgula
+			| para var de n_inteiro passo n_inteiro ate n_inteiro faca comando+ fim_para ponto_virgula;
+	
+	exp = valor
+		| esq_parentese exp dir_parentese
+		| menos exp
+		| exp mais exp
+		| exp menos exp
+		| exp mult exp
+		| exp div exp
+		| exp_logica;
+		
+	exp_logica= esq_parentese exp_logica esq_parentese
+			| exp igual exp
+			| exp diferente exp
+			| exp menor_igual exp
+			| exp maior_igual exp
+			| exp menor exp
+			| exp maior exp
+			| nao exp_logica
+			| exp_logica e exp_logica
+			| exp_logica ou exp_logica
+			| exp_logica xor exp_logica;
+*/			
+			
+			
+			
+			
+			

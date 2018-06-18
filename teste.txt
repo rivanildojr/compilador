@@ -1,0 +1,5 @@
+caractere b := 'dfsafa
+';
+caractere b := 'dfsafa';
+
+(2>1) xor (2<1);
