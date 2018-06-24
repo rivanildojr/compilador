@@ -69,6 +69,372 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStartStart(AStartStart node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASimplesDecDeclaracaoList(ASimplesDecDeclaracaoList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploDecDeclaracaoList(AMultiploDecDeclaracaoList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecSimplesDeclaracao(ADecSimplesDeclaracao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADecMultiploDeclaracao(ADecMultiploDeclaracao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADesConstDeclaracao(ADesConstDeclaracao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoSDeclaracaoSimple(ADeclaracaoSDeclaracaoSimple node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoMDeclaracaoMultipla(ADeclaracaoMDeclaracaoMultipla node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoMDeclaracaoConstante(ADeclaracaoMDeclaracaoConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarVVarV(AVarVVarV node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASimplesVarVarList(ASimplesVarVarList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploVarVarList(AMultiploVarVarList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARealTipo(ARealTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInteiroTipo(AInteiroTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACaractereTipo(ACaractereTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABooleanoTipo(ABooleanoTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdVar(AIdVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVetorVar(AVetorVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringValor(AStringValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANInteiroValor(ANInteiroValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANRealValor(ANRealValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoSCorpo(AComandoSCorpo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAComandoMCorpo(AComandoMCorpo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpVExpV(AExpVExpV node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpSExpList(AExpSExpList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpMExpList(AExpMExpList node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASenaoSeSenaoSe(ASenaoSeSenaoSe node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACasoAvalieCasoAvalie(ACasoAvalieCasoAvalie node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASenaoAvalieSenaoAvalie(ASenaoAvalieSenaoAvalie node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAtribuicaoComando(AAtribuicaoComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseALeiaComando(ALeiaComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEscrevaComando(AEscrevaComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASeComando(ASeComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAvalieComando(AAvalieComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEnquantoComando(AEnquantoComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARepitaComando(ARepitaComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaComando(AParaComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParaPassoComando(AParaPassoComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASomaExpAritmetrica(ASomaExpAritmetrica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenosExpAritmetrica(AMenosExpAritmetrica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATermoExpAritmetrica(ATermoExpAritmetrica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultTermoAritmetrico(AMultTermoAritmetrico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADivTermoAritmetrico(ADivTermoAritmetrico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFatorTermoAritmetrico(AFatorTermoAritmetrico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpParentesesFatorAritmetrico(AExpParentesesFatorAritmetrico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAValorFatorAritmetrico(AValorFatorAritmetrico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenosFatorAritmetrico(AMenosFatorAritmetrico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEExpLogica(AEExpLogica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOuExpLogica(AOuExpLogica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANaoExpLogica(ANaoExpLogica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAXorExpLogica(AXorExpLogica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATermoLExpLogica(ATermoLExpLogica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExploParetesesTermoLogico(AExploParetesesTermoLogico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARelacionalTermoLogico(ARelacionalTermoLogico node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIgualExpRelacional(AIgualExpRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADiferenteExpRelacional(ADiferenteExpRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenorIgualExpRelacional(AMenorIgualExpRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorIgualExpRelacional(AMaiorIgualExpRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenorExpRelacional(AMenorExpRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorExpRelacional(AMaiorExpRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTMenos(TMenos node)
     {
         defaultCase(node);

@@ -112,48 +112,83 @@ Ignored Tokens
 	comentario_bloco,
 	comentario_bloco_fim,
 	comentario_linha;
-/*
+
 Productions
 
-	programa = programa id inicio declaracao_list? corpo? fim_programa;
+	start = {start} programa id inicio declaracao_list? corpo? fim_programa;
 	
-	declaracao_list = declaracao+;
+	declaracao_list = {simples_dec} declaracao | {multiplo_dec} declaracao_list declaracao;
 	
-	declaracao = tipo dois_pontos var_list? var ponto_virgula 
-				| constante id valor ponto_virgula;
+	declaracao = {dec_simples} declaracao_simple
+				 | {dec_multiplo} declaracao_multipla 
+				 | {des_const} declaracao_constante;
 				
-	var_v = var virgula;
+	declaracao_simple = {declaracao_s} tipo dois_pontos var ponto_virgula;
 	
-	var_list = var_v+;
+	declaracao_multipla = {declaracao_m} tipo dois_pontos  var_list? var ponto_virgula;
 	
-	tipo = real | inteiro | caractere | booleano;
+	declaracao_constante = {declaracao_m} constante id valor ponto_virgula;
+				
+	var_v = {var_v} virgula var;
 	
-	var = id | id esq_colchete n_inteiro dir_colchete;
+	var_list = {simples_var} var_v | {multiplo_var} var_list var_v;
 	
-	valor = string | n_inteiro | n_real;
+	tipo = {real} real | {inteiro} inteiro | {caractere} caractere | {booleano} booleano;
 	
-	corpo = comando+;
+	var = {id} id | {vetor} id esq_colchete n_inteiro dir_colchete;
 	
-	exp_v = exp virgula;
+	valor = {string} string | {n_inteiro} n_inteiro | {n_real} n_real;
 	
-	exp_list = exp_v+;
+	corpo = {comando_s} comando | {comando_m} corpo comando;
 	
-	senao_se = senao comando+;
+	exp_v = {exp_v} exp_aritmetrica virgula;
 	
-	caso_avalie = caso valor dois_pontos comando+;
+	exp_list = {exp_s} exp_v | {exp_m} exp_list exp_v;
 	
-	senao_avalie = senao dois_pontos comando+;
+	senao_se = {senao_se} senao corpo;
 	
-	comando = var atribuicao exp ponto_virgula
-			| leia esq_parentese var_list? var dir_parentese ponto_virgula
-			| escreva esq_parentese exp_list? exp dir_parentese ponto_virgula
-			| se esq_parentese exp_logica dir_parentese entao comando+ senao_se? fim_se ponto_virgula
-			| avalie esq_parentese exp dir_parentese caso_avalie? senao_avalie? fim_avalie ponto_virgula
-			| enquanto esq_parentese exp_logica dir_parentese faca comando+ fim_enquanto ponto_virgula
-			| repita comando+ ate esq_parentese exp_logica dir_parentese ponto_virgula
-			| para var de n_inteiro ate n_inteiro faca comando+ fim_para ponto_virgula
-			| para var de n_inteiro passo n_inteiro ate n_inteiro faca comando+ fim_para ponto_virgula;
+	caso_avalie = {caso_avalie} caso valor dois_pontos corpo;
 	
+	senao_avalie = {senao_avalie} senao dois_pontos corpo;
+	
+	comando = {atribuicao} var atribuicao exp_aritmetrica ponto_virgula
+			| {leia} leia esq_parentese var_list? var dir_parentese ponto_virgula
+			| {escreva} escreva esq_parentese exp_list? exp_aritmetrica dir_parentese ponto_virgula
+			| {se} se esq_parentese exp_logica dir_parentese entao corpo senao_se? fim_se ponto_virgula
+			| {avalie} avalie esq_parentese exp_aritmetrica dir_parentese caso_avalie? senao_avalie? fim_avalie ponto_virgula
+			| {enquanto} enquanto esq_parentese exp_logica dir_parentese faca corpo fim_enquanto ponto_virgula
+			| {repita} repita corpo ate esq_parentese exp_logica dir_parentese ponto_virgula
+			| {para} para var de [inicio]:n_inteiro ate [fim]:n_inteiro faca corpo fim_para ponto_virgula
+			| {para_passo} para var de [inicio]:n_inteiro passo [passos]:n_inteiro ate [fim]:n_inteiro faca corpo fim_para ponto_virgula;
+	
+	exp_aritmetrica = {soma} exp_aritmetrica mais termo_aritmetrico
+					| {menos} exp_aritmetrica menos termo_aritmetrico
+					| {termo} termo_aritmetrico;
+	
+	termo_aritmetrico = {mult} termo_aritmetrico mult fator_aritmetrico 
+					|	{div} termo_aritmetrico div fator_aritmetrico
+					|   {fator} fator_aritmetrico;
+	
+	fator_aritmetrico = {exp_parenteses} esq_parentese exp_aritmetrica dir_parentese
+					|   {valor} valor
+					|	{menos} menos fator_aritmetrico;
+					
+	exp_logica = {e} exp_logica e termo_logico
+			   | {ou} exp_logica ou termo_logico
+			   | {nao} exp_logica nao termo_logico
+			   | {xor} exp_logica xor termo_logico
+			   | {termo_l} termo_logico;
+	
+	termo_logico = {explo_pareteses} esq_parentese exp_logica dir_parentese
+			   	|  { relacional} exp_relacional;
+			   	
+	exp_relacional = {igual} [esquerda]:exp_aritmetrica igual [direita]:exp_aritmetrica
+				   | {diferente} [esquerda]:exp_aritmetrica diferente [direita]:exp_aritmetrica
+				   | {menor_igual} [esquerda]:exp_aritmetrica menor_igual [direita]:exp_aritmetrica
+				   | {maior_igual} [esquerda]:exp_aritmetrica maior_igual [direita]:exp_aritmetrica
+				   | {menor} [esquerda]:exp_aritmetrica menor [direita]:exp_aritmetrica
+				   | {maior} [esquerda]:exp_aritmetrica maior [direita]:exp_aritmetrica;
+	/*			   
 	exp = valor
 		| esq_parentese exp dir_parentese
 		| menos exp
@@ -162,8 +197,8 @@ Productions
 		| exp mult exp
 		| exp div exp
 		| exp_logica;
-		
-	exp_logica= esq_parentese exp_logica esq_parentese
+
+	exp_logica= esq_parentese exp_logica dir_parentese
 			| exp igual exp
 			| exp diferente exp
 			| exp menor_igual exp
@@ -173,10 +208,9 @@ Productions
 			| nao exp_logica
 			| exp_logica e exp_logica
 			| exp_logica ou exp_logica
-			| exp_logica xor exp_logica;
-*/			
+			| exp_logica xor exp_logica;			
 			
-			
-			
+	*/			
+		
 			
 			
