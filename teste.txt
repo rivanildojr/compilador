@@ -1,5 +1,11 @@
-caractere b := 'dfsafa
-';
-caractere b := 'dfsafa';
+programa teste inicio
 
-(2>1) xor (2<1);
+real: numero_real;
+
+leia (numero_real);
+
+se ((2+1) < (2-1)) entao
+	escreva (2);
+fim se;
+
+fim.

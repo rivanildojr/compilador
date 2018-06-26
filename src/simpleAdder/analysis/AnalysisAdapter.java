@@ -93,12 +93,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseADecSimplesDeclaracao(ADecSimplesDeclaracao node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseADecMultiploDeclaracao(ADecMultiploDeclaracao node)
     {
         defaultCase(node);
@@ -106,12 +100,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseADesConstDeclaracao(ADesConstDeclaracao node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseADeclaracaoSDeclaracaoSimple(ADeclaracaoSDeclaracaoSimple node)
     {
         defaultCase(node);
     }
@@ -249,6 +237,24 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAInteiroInicioNInteiroInicio(AInteiroInicioNInteiroInicio node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInteiroFimNInteiroFim(AInteiroFimNInteiroFim node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInteiroPassoNInteiroPasso(AInteiroPassoNInteiroPasso node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAAtribuicaoComando(AAtribuicaoComando node)
     {
         defaultCase(node);
@@ -303,55 +309,55 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseASomaExpAritmetrica(ASomaExpAritmetrica node)
+    public void caseASomaExpAritmetica(ASomaExpAritmetica node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMenosExpAritmetrica(AMenosExpAritmetrica node)
+    public void caseAMenosExpAritmetica(AMenosExpAritmetica node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseATermoExpAritmetrica(ATermoExpAritmetrica node)
+    public void caseATermoExpAritmetica(ATermoExpAritmetica node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMultTermoAritmetrico(AMultTermoAritmetrico node)
+    public void caseAMultTermoAritmetico(AMultTermoAritmetico node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseADivTermoAritmetrico(ADivTermoAritmetrico node)
+    public void caseADivTermoAritmetico(ADivTermoAritmetico node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAFatorTermoAritmetrico(AFatorTermoAritmetrico node)
+    public void caseAFatorTermoAritmetico(AFatorTermoAritmetico node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAExpParentesesFatorAritmetrico(AExpParentesesFatorAritmetrico node)
+    public void caseAExpParentesesFatorAritmetico(AExpParentesesFatorAritmetico node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAValorFatorAritmetrico(AValorFatorAritmetrico node)
+    public void caseAValorFatorAritmetico(AValorFatorAritmetico node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMenosFatorAritmetrico(AMenosFatorAritmetrico node)
+    public void caseAMenosFatorAritmetico(AMenosFatorAritmetico node)
     {
         defaultCase(node);
     }
@@ -573,13 +579,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTAsparSimples(TAsparSimples node)
+    public void caseTAspasSimples(TAspasSimples node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTAsparDupla(TAsparDupla node)
+    public void caseTAspasDupla(TAspasDupla node)
     {
         defaultCase(node);
     }

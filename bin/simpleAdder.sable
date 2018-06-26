@@ -49,8 +49,8 @@ Tokens
 	{normal} dois_pontos = ':';
 	{normal} esq_parentese = '(';
 	{normal} dir_parentese = ')';
-	{normal} aspar_simples = ''';
-	{normal} aspar_dupla = '"';
+	{normal} aspas_simples = ''';
+	{normal} aspas_dupla = '"';
 
 	//Palavras Reservadas
 	{normal} programa = 'programa';
@@ -119,11 +119,8 @@ Productions
 	
 	declaracao_list = {simples_dec} declaracao | {multiplo_dec} declaracao_list declaracao;
 	
-	declaracao = {dec_simples} declaracao_simple
-				 | {dec_multiplo} declaracao_multipla 
+	declaracao = {dec_multiplo} declaracao_multipla 
 				 | {des_const} declaracao_constante;
-				
-	declaracao_simple = {declaracao_s} tipo dois_pontos var ponto_virgula;
 	
 	declaracao_multipla = {declaracao_m} tipo dois_pontos  var_list? var ponto_virgula;
 	
@@ -141,7 +138,7 @@ Productions
 	
 	corpo = {comando_s} comando | {comando_m} corpo comando;
 	
-	exp_v = {exp_v} exp_aritmetrica virgula;
+	exp_v = {exp_v} exp_aritmetica virgula;
 	
 	exp_list = {exp_s} exp_v | {exp_m} exp_list exp_v;
 	
@@ -151,27 +148,33 @@ Productions
 	
 	senao_avalie = {senao_avalie} senao dois_pontos corpo;
 	
-	comando = {atribuicao} var atribuicao exp_aritmetrica ponto_virgula
+	n_inteiro_inicio = {inteiro_inicio} n_inteiro;
+	
+	n_inteiro_fim = {inteiro_fim} n_inteiro;
+	
+	n_inteiro_passo = {inteiro_passo} n_inteiro;
+	
+	comando = {atribuicao} var atribuicao exp_aritmetica ponto_virgula
 			| {leia} leia esq_parentese var_list? var dir_parentese ponto_virgula
-			| {escreva} escreva esq_parentese exp_list? exp_aritmetrica dir_parentese ponto_virgula
+			| {escreva} escreva esq_parentese exp_list? exp_aritmetica dir_parentese ponto_virgula
 			| {se} se esq_parentese exp_logica dir_parentese entao corpo senao_se? fim_se ponto_virgula
-			| {avalie} avalie esq_parentese exp_aritmetrica dir_parentese caso_avalie? senao_avalie? fim_avalie ponto_virgula
+			| {avalie} avalie esq_parentese exp_aritmetica dir_parentese caso_avalie? senao_avalie? fim_avalie ponto_virgula
 			| {enquanto} enquanto esq_parentese exp_logica dir_parentese faca corpo fim_enquanto ponto_virgula
 			| {repita} repita corpo ate esq_parentese exp_logica dir_parentese ponto_virgula
-			| {para} para var de [inicio]:n_inteiro ate [fim]:n_inteiro faca corpo fim_para ponto_virgula
-			| {para_passo} para var de [inicio]:n_inteiro passo [passos]:n_inteiro ate [fim]:n_inteiro faca corpo fim_para ponto_virgula;
+			| {para} para var de n_inteiro_inicio ate n_inteiro_fim faca corpo fim_para ponto_virgula
+			| {para_passo} para var de n_inteiro_inicio passo n_inteiro_passo ate n_inteiro_fim faca corpo fim_para ponto_virgula;
 	
-	exp_aritmetrica = {soma} exp_aritmetrica mais termo_aritmetrico
-					| {menos} exp_aritmetrica menos termo_aritmetrico
-					| {termo} termo_aritmetrico;
+	exp_aritmetica = {soma} exp_aritmetica mais termo_aritmetico
+					| {menos} exp_aritmetica menos termo_aritmetico
+					| {termo} termo_aritmetico;
 	
-	termo_aritmetrico = {mult} termo_aritmetrico mult fator_aritmetrico 
-					|	{div} termo_aritmetrico div fator_aritmetrico
-					|   {fator} fator_aritmetrico;
+	termo_aritmetico = {mult} termo_aritmetico mult fator_aritmetico 
+					|	{div} termo_aritmetico div fator_aritmetico
+					|   {fator} fator_aritmetico;
 	
-	fator_aritmetrico = {exp_parenteses} esq_parentese exp_aritmetrica dir_parentese
+	fator_aritmetico = {exp_parenteses} esq_parentese exp_aritmetica dir_parentese
 					|   {valor} valor
-					|	{menos} menos fator_aritmetrico;
+					|	{menos} menos fator_aritmetico;
 					
 	exp_logica = {e} exp_logica e termo_logico
 			   | {ou} exp_logica ou termo_logico
@@ -180,37 +183,11 @@ Productions
 			   | {termo_l} termo_logico;
 	
 	termo_logico = {explo_pareteses} esq_parentese exp_logica dir_parentese
-			   	|  { relacional} exp_relacional;
+			   	|  {relacional} exp_relacional;
 			   	
-	exp_relacional = {igual} [esquerda]:exp_aritmetrica igual [direita]:exp_aritmetrica
-				   | {diferente} [esquerda]:exp_aritmetrica diferente [direita]:exp_aritmetrica
-				   | {menor_igual} [esquerda]:exp_aritmetrica menor_igual [direita]:exp_aritmetrica
-				   | {maior_igual} [esquerda]:exp_aritmetrica maior_igual [direita]:exp_aritmetrica
-				   | {menor} [esquerda]:exp_aritmetrica menor [direita]:exp_aritmetrica
-				   | {maior} [esquerda]:exp_aritmetrica maior [direita]:exp_aritmetrica;
-	/*			   
-	exp = valor
-		| esq_parentese exp dir_parentese
-		| menos exp
-		| exp mais exp
-		| exp menos exp
-		| exp mult exp
-		| exp div exp
-		| exp_logica;
-
-	exp_logica= esq_parentese exp_logica dir_parentese
-			| exp igual exp
-			| exp diferente exp
-			| exp menor_igual exp
-			| exp maior_igual exp
-			| exp menor exp
-			| exp maior exp
-			| nao exp_logica
-			| exp_logica e exp_logica
-			| exp_logica ou exp_logica
-			| exp_logica xor exp_logica;			
-			
-	*/			
-		
-			
-			
+	exp_relacional = {igual} exp_aritmetica igual termo_aritmetico
+				   | {diferente} exp_aritmetica diferente termo_aritmetico
+				   | {menor_igual} exp_aritmetica menor_igual termo_aritmetico
+				   | {maior_igual} exp_aritmetica maior_igual termo_aritmetico
+				   | {menor} exp_aritmetica menor termo_aritmetico
+				   | {maior} exp_aritmetica maior termo_aritmetico;

@@ -10,7 +10,7 @@ public final class AEscrevaComando extends PComando
     private TEscreva _escreva_;
     private TEsqParentese _esqParentese_;
     private PExpList _expList_;
-    private PExpAritmetrica _expAritmetrica_;
+    private PExpAritmetica _expAritmetica_;
     private TDirParentese _dirParentese_;
     private TPontoVirgula _pontoVirgula_;
 
@@ -23,7 +23,7 @@ public final class AEscrevaComando extends PComando
         @SuppressWarnings("hiding") TEscreva _escreva_,
         @SuppressWarnings("hiding") TEsqParentese _esqParentese_,
         @SuppressWarnings("hiding") PExpList _expList_,
-        @SuppressWarnings("hiding") PExpAritmetrica _expAritmetrica_,
+        @SuppressWarnings("hiding") PExpAritmetica _expAritmetica_,
         @SuppressWarnings("hiding") TDirParentese _dirParentese_,
         @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
     {
@@ -34,7 +34,7 @@ public final class AEscrevaComando extends PComando
 
         setExpList(_expList_);
 
-        setExpAritmetrica(_expAritmetrica_);
+        setExpAritmetica(_expAritmetica_);
 
         setDirParentese(_dirParentese_);
 
@@ -49,7 +49,7 @@ public final class AEscrevaComando extends PComando
             cloneNode(this._escreva_),
             cloneNode(this._esqParentese_),
             cloneNode(this._expList_),
-            cloneNode(this._expAritmetrica_),
+            cloneNode(this._expAritmetica_),
             cloneNode(this._dirParentese_),
             cloneNode(this._pontoVirgula_));
     }
@@ -135,16 +135,16 @@ public final class AEscrevaComando extends PComando
         this._expList_ = node;
     }
 
-    public PExpAritmetrica getExpAritmetrica()
+    public PExpAritmetica getExpAritmetica()
     {
-        return this._expAritmetrica_;
+        return this._expAritmetica_;
     }
 
-    public void setExpAritmetrica(PExpAritmetrica node)
+    public void setExpAritmetica(PExpAritmetica node)
     {
-        if(this._expAritmetrica_ != null)
+        if(this._expAritmetica_ != null)
         {
-            this._expAritmetrica_.parent(null);
+            this._expAritmetica_.parent(null);
         }
 
         if(node != null)
@@ -157,7 +157,7 @@ public final class AEscrevaComando extends PComando
             node.parent(this);
         }
 
-        this._expAritmetrica_ = node;
+        this._expAritmetica_ = node;
     }
 
     public TDirParentese getDirParentese()
@@ -217,7 +217,7 @@ public final class AEscrevaComando extends PComando
             + toString(this._escreva_)
             + toString(this._esqParentese_)
             + toString(this._expList_)
-            + toString(this._expAritmetrica_)
+            + toString(this._expAritmetica_)
             + toString(this._dirParentese_)
             + toString(this._pontoVirgula_);
     }
@@ -244,9 +244,9 @@ public final class AEscrevaComando extends PComando
             return;
         }
 
-        if(this._expAritmetrica_ == child)
+        if(this._expAritmetica_ == child)
         {
-            this._expAritmetrica_ = null;
+            this._expAritmetica_ = null;
             return;
         }
 
@@ -287,9 +287,9 @@ public final class AEscrevaComando extends PComando
             return;
         }
 
-        if(this._expAritmetrica_ == oldChild)
+        if(this._expAritmetica_ == oldChild)
         {
-            setExpAritmetrica((PExpAritmetrica) newChild);
+            setExpAritmetica((PExpAritmetica) newChild);
             return;
         }
 

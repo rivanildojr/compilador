@@ -7,9 +7,9 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class AMaiorExpRelacional extends PExpRelacional
 {
-    private PExpAritmetrica _esquerda_;
+    private PExpAritmetica _expAritmetica_;
     private TMaior _maior_;
-    private PExpAritmetrica _direita_;
+    private PTermoAritmetico _termoAritmetico_;
 
     public AMaiorExpRelacional()
     {
@@ -17,16 +17,16 @@ public final class AMaiorExpRelacional extends PExpRelacional
     }
 
     public AMaiorExpRelacional(
-        @SuppressWarnings("hiding") PExpAritmetrica _esquerda_,
+        @SuppressWarnings("hiding") PExpAritmetica _expAritmetica_,
         @SuppressWarnings("hiding") TMaior _maior_,
-        @SuppressWarnings("hiding") PExpAritmetrica _direita_)
+        @SuppressWarnings("hiding") PTermoAritmetico _termoAritmetico_)
     {
         // Constructor
-        setEsquerda(_esquerda_);
+        setExpAritmetica(_expAritmetica_);
 
         setMaior(_maior_);
 
-        setDireita(_direita_);
+        setTermoAritmetico(_termoAritmetico_);
 
     }
 
@@ -34,9 +34,9 @@ public final class AMaiorExpRelacional extends PExpRelacional
     public Object clone()
     {
         return new AMaiorExpRelacional(
-            cloneNode(this._esquerda_),
+            cloneNode(this._expAritmetica_),
             cloneNode(this._maior_),
-            cloneNode(this._direita_));
+            cloneNode(this._termoAritmetico_));
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class AMaiorExpRelacional extends PExpRelacional
         ((Analysis) sw).caseAMaiorExpRelacional(this);
     }
 
-    public PExpAritmetrica getEsquerda()
+    public PExpAritmetica getExpAritmetica()
     {
-        return this._esquerda_;
+        return this._expAritmetica_;
     }
 
-    public void setEsquerda(PExpAritmetrica node)
+    public void setExpAritmetica(PExpAritmetica node)
     {
-        if(this._esquerda_ != null)
+        if(this._expAritmetica_ != null)
         {
-            this._esquerda_.parent(null);
+            this._expAritmetica_.parent(null);
         }
 
         if(node != null)
@@ -67,7 +67,7 @@ public final class AMaiorExpRelacional extends PExpRelacional
             node.parent(this);
         }
 
-        this._esquerda_ = node;
+        this._expAritmetica_ = node;
     }
 
     public TMaior getMaior()
@@ -95,16 +95,16 @@ public final class AMaiorExpRelacional extends PExpRelacional
         this._maior_ = node;
     }
 
-    public PExpAritmetrica getDireita()
+    public PTermoAritmetico getTermoAritmetico()
     {
-        return this._direita_;
+        return this._termoAritmetico_;
     }
 
-    public void setDireita(PExpAritmetrica node)
+    public void setTermoAritmetico(PTermoAritmetico node)
     {
-        if(this._direita_ != null)
+        if(this._termoAritmetico_ != null)
         {
-            this._direita_.parent(null);
+            this._termoAritmetico_.parent(null);
         }
 
         if(node != null)
@@ -117,25 +117,25 @@ public final class AMaiorExpRelacional extends PExpRelacional
             node.parent(this);
         }
 
-        this._direita_ = node;
+        this._termoAritmetico_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._esquerda_)
+            + toString(this._expAritmetica_)
             + toString(this._maior_)
-            + toString(this._direita_);
+            + toString(this._termoAritmetico_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._esquerda_ == child)
+        if(this._expAritmetica_ == child)
         {
-            this._esquerda_ = null;
+            this._expAritmetica_ = null;
             return;
         }
 
@@ -145,9 +145,9 @@ public final class AMaiorExpRelacional extends PExpRelacional
             return;
         }
 
-        if(this._direita_ == child)
+        if(this._termoAritmetico_ == child)
         {
-            this._direita_ = null;
+            this._termoAritmetico_ = null;
             return;
         }
 
@@ -158,9 +158,9 @@ public final class AMaiorExpRelacional extends PExpRelacional
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._esquerda_ == oldChild)
+        if(this._expAritmetica_ == oldChild)
         {
-            setEsquerda((PExpAritmetrica) newChild);
+            setExpAritmetica((PExpAritmetica) newChild);
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AMaiorExpRelacional extends PExpRelacional
             return;
         }
 
-        if(this._direita_ == oldChild)
+        if(this._termoAritmetico_ == oldChild)
         {
-            setDireita((PExpAritmetrica) newChild);
+            setTermoAritmetico((PTermoAritmetico) newChild);
             return;
         }
 

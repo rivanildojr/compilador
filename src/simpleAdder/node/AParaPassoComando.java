@@ -10,11 +10,11 @@ public final class AParaPassoComando extends PComando
     private TPara _para_;
     private PVar _var_;
     private TDe _de_;
-    private TNInteiro _inicio_;
+    private PNInteiroInicio _nInteiroInicio_;
     private TPasso _passo_;
-    private TNInteiro _passos_;
+    private PNInteiroPasso _nInteiroPasso_;
     private TAte _ate_;
-    private TNInteiro _fim_;
+    private PNInteiroFim _nInteiroFim_;
     private TFaca _faca_;
     private PCorpo _corpo_;
     private TFimPara _fimPara_;
@@ -29,11 +29,11 @@ public final class AParaPassoComando extends PComando
         @SuppressWarnings("hiding") TPara _para_,
         @SuppressWarnings("hiding") PVar _var_,
         @SuppressWarnings("hiding") TDe _de_,
-        @SuppressWarnings("hiding") TNInteiro _inicio_,
+        @SuppressWarnings("hiding") PNInteiroInicio _nInteiroInicio_,
         @SuppressWarnings("hiding") TPasso _passo_,
-        @SuppressWarnings("hiding") TNInteiro _passos_,
+        @SuppressWarnings("hiding") PNInteiroPasso _nInteiroPasso_,
         @SuppressWarnings("hiding") TAte _ate_,
-        @SuppressWarnings("hiding") TNInteiro _fim_,
+        @SuppressWarnings("hiding") PNInteiroFim _nInteiroFim_,
         @SuppressWarnings("hiding") TFaca _faca_,
         @SuppressWarnings("hiding") PCorpo _corpo_,
         @SuppressWarnings("hiding") TFimPara _fimPara_,
@@ -46,15 +46,15 @@ public final class AParaPassoComando extends PComando
 
         setDe(_de_);
 
-        setInicio(_inicio_);
+        setNInteiroInicio(_nInteiroInicio_);
 
         setPasso(_passo_);
 
-        setPassos(_passos_);
+        setNInteiroPasso(_nInteiroPasso_);
 
         setAte(_ate_);
 
-        setFim(_fim_);
+        setNInteiroFim(_nInteiroFim_);
 
         setFaca(_faca_);
 
@@ -73,11 +73,11 @@ public final class AParaPassoComando extends PComando
             cloneNode(this._para_),
             cloneNode(this._var_),
             cloneNode(this._de_),
-            cloneNode(this._inicio_),
+            cloneNode(this._nInteiroInicio_),
             cloneNode(this._passo_),
-            cloneNode(this._passos_),
+            cloneNode(this._nInteiroPasso_),
             cloneNode(this._ate_),
-            cloneNode(this._fim_),
+            cloneNode(this._nInteiroFim_),
             cloneNode(this._faca_),
             cloneNode(this._corpo_),
             cloneNode(this._fimPara_),
@@ -165,16 +165,16 @@ public final class AParaPassoComando extends PComando
         this._de_ = node;
     }
 
-    public TNInteiro getInicio()
+    public PNInteiroInicio getNInteiroInicio()
     {
-        return this._inicio_;
+        return this._nInteiroInicio_;
     }
 
-    public void setInicio(TNInteiro node)
+    public void setNInteiroInicio(PNInteiroInicio node)
     {
-        if(this._inicio_ != null)
+        if(this._nInteiroInicio_ != null)
         {
-            this._inicio_.parent(null);
+            this._nInteiroInicio_.parent(null);
         }
 
         if(node != null)
@@ -187,7 +187,7 @@ public final class AParaPassoComando extends PComando
             node.parent(this);
         }
 
-        this._inicio_ = node;
+        this._nInteiroInicio_ = node;
     }
 
     public TPasso getPasso()
@@ -215,16 +215,16 @@ public final class AParaPassoComando extends PComando
         this._passo_ = node;
     }
 
-    public TNInteiro getPassos()
+    public PNInteiroPasso getNInteiroPasso()
     {
-        return this._passos_;
+        return this._nInteiroPasso_;
     }
 
-    public void setPassos(TNInteiro node)
+    public void setNInteiroPasso(PNInteiroPasso node)
     {
-        if(this._passos_ != null)
+        if(this._nInteiroPasso_ != null)
         {
-            this._passos_.parent(null);
+            this._nInteiroPasso_.parent(null);
         }
 
         if(node != null)
@@ -237,7 +237,7 @@ public final class AParaPassoComando extends PComando
             node.parent(this);
         }
 
-        this._passos_ = node;
+        this._nInteiroPasso_ = node;
     }
 
     public TAte getAte()
@@ -265,16 +265,16 @@ public final class AParaPassoComando extends PComando
         this._ate_ = node;
     }
 
-    public TNInteiro getFim()
+    public PNInteiroFim getNInteiroFim()
     {
-        return this._fim_;
+        return this._nInteiroFim_;
     }
 
-    public void setFim(TNInteiro node)
+    public void setNInteiroFim(PNInteiroFim node)
     {
-        if(this._fim_ != null)
+        if(this._nInteiroFim_ != null)
         {
-            this._fim_.parent(null);
+            this._nInteiroFim_.parent(null);
         }
 
         if(node != null)
@@ -287,7 +287,7 @@ public final class AParaPassoComando extends PComando
             node.parent(this);
         }
 
-        this._fim_ = node;
+        this._nInteiroFim_ = node;
     }
 
     public TFaca getFaca()
@@ -397,11 +397,11 @@ public final class AParaPassoComando extends PComando
             + toString(this._para_)
             + toString(this._var_)
             + toString(this._de_)
-            + toString(this._inicio_)
+            + toString(this._nInteiroInicio_)
             + toString(this._passo_)
-            + toString(this._passos_)
+            + toString(this._nInteiroPasso_)
             + toString(this._ate_)
-            + toString(this._fim_)
+            + toString(this._nInteiroFim_)
             + toString(this._faca_)
             + toString(this._corpo_)
             + toString(this._fimPara_)
@@ -430,9 +430,9 @@ public final class AParaPassoComando extends PComando
             return;
         }
 
-        if(this._inicio_ == child)
+        if(this._nInteiroInicio_ == child)
         {
-            this._inicio_ = null;
+            this._nInteiroInicio_ = null;
             return;
         }
 
@@ -442,9 +442,9 @@ public final class AParaPassoComando extends PComando
             return;
         }
 
-        if(this._passos_ == child)
+        if(this._nInteiroPasso_ == child)
         {
-            this._passos_ = null;
+            this._nInteiroPasso_ = null;
             return;
         }
 
@@ -454,9 +454,9 @@ public final class AParaPassoComando extends PComando
             return;
         }
 
-        if(this._fim_ == child)
+        if(this._nInteiroFim_ == child)
         {
-            this._fim_ = null;
+            this._nInteiroFim_ = null;
             return;
         }
 
@@ -509,9 +509,9 @@ public final class AParaPassoComando extends PComando
             return;
         }
 
-        if(this._inicio_ == oldChild)
+        if(this._nInteiroInicio_ == oldChild)
         {
-            setInicio((TNInteiro) newChild);
+            setNInteiroInicio((PNInteiroInicio) newChild);
             return;
         }
 
@@ -521,9 +521,9 @@ public final class AParaPassoComando extends PComando
             return;
         }
 
-        if(this._passos_ == oldChild)
+        if(this._nInteiroPasso_ == oldChild)
         {
-            setPassos((TNInteiro) newChild);
+            setNInteiroPasso((PNInteiroPasso) newChild);
             return;
         }
 
@@ -533,9 +533,9 @@ public final class AParaPassoComando extends PComando
             return;
         }
 
-        if(this._fim_ == oldChild)
+        if(this._nInteiroFim_ == oldChild)
         {
-            setFim((TNInteiro) newChild);
+            setNInteiroFim((PNInteiroFim) newChild);
             return;
         }
 

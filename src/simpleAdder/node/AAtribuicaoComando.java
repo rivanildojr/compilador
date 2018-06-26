@@ -9,7 +9,7 @@ public final class AAtribuicaoComando extends PComando
 {
     private PVar _var_;
     private TAtribuicao _atribuicao_;
-    private PExpAritmetrica _expAritmetrica_;
+    private PExpAritmetica _expAritmetica_;
     private TPontoVirgula _pontoVirgula_;
 
     public AAtribuicaoComando()
@@ -20,7 +20,7 @@ public final class AAtribuicaoComando extends PComando
     public AAtribuicaoComando(
         @SuppressWarnings("hiding") PVar _var_,
         @SuppressWarnings("hiding") TAtribuicao _atribuicao_,
-        @SuppressWarnings("hiding") PExpAritmetrica _expAritmetrica_,
+        @SuppressWarnings("hiding") PExpAritmetica _expAritmetica_,
         @SuppressWarnings("hiding") TPontoVirgula _pontoVirgula_)
     {
         // Constructor
@@ -28,7 +28,7 @@ public final class AAtribuicaoComando extends PComando
 
         setAtribuicao(_atribuicao_);
 
-        setExpAritmetrica(_expAritmetrica_);
+        setExpAritmetica(_expAritmetica_);
 
         setPontoVirgula(_pontoVirgula_);
 
@@ -40,7 +40,7 @@ public final class AAtribuicaoComando extends PComando
         return new AAtribuicaoComando(
             cloneNode(this._var_),
             cloneNode(this._atribuicao_),
-            cloneNode(this._expAritmetrica_),
+            cloneNode(this._expAritmetica_),
             cloneNode(this._pontoVirgula_));
     }
 
@@ -100,16 +100,16 @@ public final class AAtribuicaoComando extends PComando
         this._atribuicao_ = node;
     }
 
-    public PExpAritmetrica getExpAritmetrica()
+    public PExpAritmetica getExpAritmetica()
     {
-        return this._expAritmetrica_;
+        return this._expAritmetica_;
     }
 
-    public void setExpAritmetrica(PExpAritmetrica node)
+    public void setExpAritmetica(PExpAritmetica node)
     {
-        if(this._expAritmetrica_ != null)
+        if(this._expAritmetica_ != null)
         {
-            this._expAritmetrica_.parent(null);
+            this._expAritmetica_.parent(null);
         }
 
         if(node != null)
@@ -122,7 +122,7 @@ public final class AAtribuicaoComando extends PComando
             node.parent(this);
         }
 
-        this._expAritmetrica_ = node;
+        this._expAritmetica_ = node;
     }
 
     public TPontoVirgula getPontoVirgula()
@@ -156,7 +156,7 @@ public final class AAtribuicaoComando extends PComando
         return ""
             + toString(this._var_)
             + toString(this._atribuicao_)
-            + toString(this._expAritmetrica_)
+            + toString(this._expAritmetica_)
             + toString(this._pontoVirgula_);
     }
 
@@ -176,9 +176,9 @@ public final class AAtribuicaoComando extends PComando
             return;
         }
 
-        if(this._expAritmetrica_ == child)
+        if(this._expAritmetica_ == child)
         {
-            this._expAritmetrica_ = null;
+            this._expAritmetica_ = null;
             return;
         }
 
@@ -207,9 +207,9 @@ public final class AAtribuicaoComando extends PComando
             return;
         }
 
-        if(this._expAritmetrica_ == oldChild)
+        if(this._expAritmetica_ == oldChild)
         {
-            setExpAritmetrica((PExpAritmetrica) newChild);
+            setExpAritmetica((PExpAritmetica) newChild);
             return;
         }
 

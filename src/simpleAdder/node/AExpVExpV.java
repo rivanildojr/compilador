@@ -7,7 +7,7 @@ import simpleAdder.analysis.*;
 @SuppressWarnings("nls")
 public final class AExpVExpV extends PExpV
 {
-    private PExpAritmetrica _expAritmetrica_;
+    private PExpAritmetica _expAritmetica_;
     private TVirgula _virgula_;
 
     public AExpVExpV()
@@ -16,11 +16,11 @@ public final class AExpVExpV extends PExpV
     }
 
     public AExpVExpV(
-        @SuppressWarnings("hiding") PExpAritmetrica _expAritmetrica_,
+        @SuppressWarnings("hiding") PExpAritmetica _expAritmetica_,
         @SuppressWarnings("hiding") TVirgula _virgula_)
     {
         // Constructor
-        setExpAritmetrica(_expAritmetrica_);
+        setExpAritmetica(_expAritmetica_);
 
         setVirgula(_virgula_);
 
@@ -30,7 +30,7 @@ public final class AExpVExpV extends PExpV
     public Object clone()
     {
         return new AExpVExpV(
-            cloneNode(this._expAritmetrica_),
+            cloneNode(this._expAritmetica_),
             cloneNode(this._virgula_));
     }
 
@@ -40,16 +40,16 @@ public final class AExpVExpV extends PExpV
         ((Analysis) sw).caseAExpVExpV(this);
     }
 
-    public PExpAritmetrica getExpAritmetrica()
+    public PExpAritmetica getExpAritmetica()
     {
-        return this._expAritmetrica_;
+        return this._expAritmetica_;
     }
 
-    public void setExpAritmetrica(PExpAritmetrica node)
+    public void setExpAritmetica(PExpAritmetica node)
     {
-        if(this._expAritmetrica_ != null)
+        if(this._expAritmetica_ != null)
         {
-            this._expAritmetrica_.parent(null);
+            this._expAritmetica_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class AExpVExpV extends PExpV
             node.parent(this);
         }
 
-        this._expAritmetrica_ = node;
+        this._expAritmetica_ = node;
     }
 
     public TVirgula getVirgula()
@@ -94,7 +94,7 @@ public final class AExpVExpV extends PExpV
     public String toString()
     {
         return ""
-            + toString(this._expAritmetrica_)
+            + toString(this._expAritmetica_)
             + toString(this._virgula_);
     }
 
@@ -102,9 +102,9 @@ public final class AExpVExpV extends PExpV
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expAritmetrica_ == child)
+        if(this._expAritmetica_ == child)
         {
-            this._expAritmetrica_ = null;
+            this._expAritmetica_ = null;
             return;
         }
 
@@ -121,9 +121,9 @@ public final class AExpVExpV extends PExpV
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expAritmetrica_ == oldChild)
+        if(this._expAritmetica_ == oldChild)
         {
-            setExpAritmetrica((PExpAritmetrica) newChild);
+            setExpAritmetica((PExpAritmetica) newChild);
             return;
         }
 
