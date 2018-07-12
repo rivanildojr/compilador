@@ -1,11 +1,9 @@
-programa teste inicio
-
-real: numero_real;
-
-leia (numero_real);
-
-se ((2+1) < (2-1)) entao
-	escreva (2);
-fim se;
-
+programa primeiro inicio inteiro: a, b; booleano: c;
+  a := 20;
+  b := 30;
+  se (b > a) entao 
+    escreva ('oi');
+    leia (a);
+    c := nao (b = a);
+  fim se;
 fim.

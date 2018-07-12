@@ -1,7 +1,7 @@
 /* Create an AST, then invoke our interpreter. */ 
-import simpleAdder.lexer.* ;
-import simpleAdder.parser.* ;
-import simpleAdder.node.* ; 
+import especificacao.lexer.* ;
+import especificacao.parser.* ;
+import especificacao.node.* ; 
   
 import java.io.* ; 
   

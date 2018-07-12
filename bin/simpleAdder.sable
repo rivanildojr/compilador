@@ -182,7 +182,7 @@ Productions
 			   | {xor} exp_logica xor termo_logico
 			   | {termo_l} termo_logico;
 	
-	termo_logico = {explo_pareteses} esq_parentese exp_logica dir_parentese
+	termo_logico = {explo_parenteses} esq_parentese exp_logica dir_parentese
 			   	|  {relacional} exp_relacional;
 			   	
 	exp_relacional = {igual} exp_aritmetica igual termo_aritmetico

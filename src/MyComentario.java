@@ -1,7 +1,7 @@
 import java.io.IOException;
 
-import simpleAdder.lexer.*;
-import simpleAdder.node.*;
+import especificacao.lexer.*;
+import especificacao.node.*;
 public class MyComentario extends Lexer{
 	private int count;
 	private TComentarioBloco comentario;
