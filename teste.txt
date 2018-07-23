@@ -1,9 +1,7 @@
-programa primeiro inicio inteiro: a, b; booleano: c;
-  a := 20;
-  b := 30;
-  se (b > a) entao 
-    escreva ('oi');
-    leia (a);
-    c := nao (b = a);
-  fim se;
+programa inicio2
+inicio
+	se (nao(a>0)) entao 
+		a:= 2;		
+	fim se;
+	
 fim.

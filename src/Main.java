@@ -14,7 +14,7 @@ public class Main {
 			   MyComentario lexer = new MyComentario (new PushbackReader(entrada, 1024));//Instancia o Lexer
 			   Parser parser = new Parser(lexer);
 			   Start ast = parser.parse();
-			   Token t = null;
+//			   Token t = null;
 //			   while(true) {
 //				   try {
 //					   t = lexer.next();
