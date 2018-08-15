@@ -5,19 +5,19 @@ package especificacao.node;
 import especificacao.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AOuExpLogica extends PExpLogica
+public final class ASubtracaoExpAritmetica extends PExpAritmetica
 {
-    private PExpLogica _esquerda_;
-    private PExpLogica _direita_;
+    private PExpAritmetica _esquerda_;
+    private PExpAritmetica _direita_;
 
-    public AOuExpLogica()
+    public ASubtracaoExpAritmetica()
     {
         // Constructor
     }
 
-    public AOuExpLogica(
-        @SuppressWarnings("hiding") PExpLogica _esquerda_,
-        @SuppressWarnings("hiding") PExpLogica _direita_)
+    public ASubtracaoExpAritmetica(
+        @SuppressWarnings("hiding") PExpAritmetica _esquerda_,
+        @SuppressWarnings("hiding") PExpAritmetica _direita_)
     {
         // Constructor
         setEsquerda(_esquerda_);
@@ -29,7 +29,7 @@ public final class AOuExpLogica extends PExpLogica
     @Override
     public Object clone()
     {
-        return new AOuExpLogica(
+        return new ASubtracaoExpAritmetica(
             cloneNode(this._esquerda_),
             cloneNode(this._direita_));
     }
@@ -37,15 +37,15 @@ public final class AOuExpLogica extends PExpLogica
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAOuExpLogica(this);
+        ((Analysis) sw).caseASubtracaoExpAritmetica(this);
     }
 
-    public PExpLogica getEsquerda()
+    public PExpAritmetica getEsquerda()
     {
         return this._esquerda_;
     }
 
-    public void setEsquerda(PExpLogica node)
+    public void setEsquerda(PExpAritmetica node)
     {
         if(this._esquerda_ != null)
         {
@@ -65,12 +65,12 @@ public final class AOuExpLogica extends PExpLogica
         this._esquerda_ = node;
     }
 
-    public PExpLogica getDireita()
+    public PExpAritmetica getDireita()
     {
         return this._direita_;
     }
 
-    public void setDireita(PExpLogica node)
+    public void setDireita(PExpAritmetica node)
     {
         if(this._direita_ != null)
         {
@@ -123,13 +123,13 @@ public final class AOuExpLogica extends PExpLogica
         // Replace child
         if(this._esquerda_ == oldChild)
         {
-            setEsquerda((PExpLogica) newChild);
+            setEsquerda((PExpAritmetica) newChild);
             return;
         }
 
         if(this._direita_ == oldChild)
         {
-            setDireita((PExpLogica) newChild);
+            setDireita((PExpAritmetica) newChild);
             return;
         }
 

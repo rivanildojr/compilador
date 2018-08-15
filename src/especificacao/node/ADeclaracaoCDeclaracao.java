@@ -5,39 +5,39 @@ package especificacao.node;
 import especificacao.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVetorVar extends PVar
+public final class ADeclaracaoCDeclaracao extends PDeclaracao
 {
     private TId _id_;
-    private TNInteiro _nInteiro_;
+    private PValor _valor_;
 
-    public AVetorVar()
+    public ADeclaracaoCDeclaracao()
     {
         // Constructor
     }
 
-    public AVetorVar(
+    public ADeclaracaoCDeclaracao(
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TNInteiro _nInteiro_)
+        @SuppressWarnings("hiding") PValor _valor_)
     {
         // Constructor
         setId(_id_);
 
-        setNInteiro(_nInteiro_);
+        setValor(_valor_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AVetorVar(
+        return new ADeclaracaoCDeclaracao(
             cloneNode(this._id_),
-            cloneNode(this._nInteiro_));
+            cloneNode(this._valor_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVetorVar(this);
+        ((Analysis) sw).caseADeclaracaoCDeclaracao(this);
     }
 
     public TId getId()
@@ -65,16 +65,16 @@ public final class AVetorVar extends PVar
         this._id_ = node;
     }
 
-    public TNInteiro getNInteiro()
+    public PValor getValor()
     {
-        return this._nInteiro_;
+        return this._valor_;
     }
 
-    public void setNInteiro(TNInteiro node)
+    public void setValor(PValor node)
     {
-        if(this._nInteiro_ != null)
+        if(this._valor_ != null)
         {
-            this._nInteiro_.parent(null);
+            this._valor_.parent(null);
         }
 
         if(node != null)
@@ -87,7 +87,7 @@ public final class AVetorVar extends PVar
             node.parent(this);
         }
 
-        this._nInteiro_ = node;
+        this._valor_ = node;
     }
 
     @Override
@@ -95,7 +95,7 @@ public final class AVetorVar extends PVar
     {
         return ""
             + toString(this._id_)
-            + toString(this._nInteiro_);
+            + toString(this._valor_);
     }
 
     @Override
@@ -108,9 +108,9 @@ public final class AVetorVar extends PVar
             return;
         }
 
-        if(this._nInteiro_ == child)
+        if(this._valor_ == child)
         {
-            this._nInteiro_ = null;
+            this._valor_ = null;
             return;
         }
 
@@ -127,9 +127,9 @@ public final class AVetorVar extends PVar
             return;
         }
 
-        if(this._nInteiro_ == oldChild)
+        if(this._valor_ == oldChild)
         {
-            setNInteiro((TNInteiro) newChild);
+            setValor((PValor) newChild);
             return;
         }
 

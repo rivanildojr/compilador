@@ -1,7 +1,21 @@
 programa inicio2
 inicio
-	se (nao(a>0)) entao 
-		a:= 2;		
+	
+	inteiro: a, b, c, d;
+	
+	escreva((a+b) - (c+d));
+	
+	se ((a+b) = (2*d)) entao
+		a := 1;
 	fim se;
+
+	avalie (a+b)
+		caso 3:
+			escreva(a+b);
+		/*caso 4:
+			escreva(b);*/
+		senao:
+			escreva(b+a);
+	fim avalie;	
 	
 fim.

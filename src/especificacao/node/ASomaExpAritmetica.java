@@ -7,9 +7,8 @@ import especificacao.analysis.*;
 @SuppressWarnings("nls")
 public final class ASomaExpAritmetica extends PExpAritmetica
 {
-    private PExpAritmetica _expAritmetica_;
-    private TMais _mais_;
-    private PTermoAritmetico _termoAritmetico_;
+    private PExpAritmetica _esquerda_;
+    private PExpAritmetica _direita_;
 
     public ASomaExpAritmetica()
     {
@@ -17,16 +16,13 @@ public final class ASomaExpAritmetica extends PExpAritmetica
     }
 
     public ASomaExpAritmetica(
-        @SuppressWarnings("hiding") PExpAritmetica _expAritmetica_,
-        @SuppressWarnings("hiding") TMais _mais_,
-        @SuppressWarnings("hiding") PTermoAritmetico _termoAritmetico_)
+        @SuppressWarnings("hiding") PExpAritmetica _esquerda_,
+        @SuppressWarnings("hiding") PExpAritmetica _direita_)
     {
         // Constructor
-        setExpAritmetica(_expAritmetica_);
+        setEsquerda(_esquerda_);
 
-        setMais(_mais_);
-
-        setTermoAritmetico(_termoAritmetico_);
+        setDireita(_direita_);
 
     }
 
@@ -34,9 +30,8 @@ public final class ASomaExpAritmetica extends PExpAritmetica
     public Object clone()
     {
         return new ASomaExpAritmetica(
-            cloneNode(this._expAritmetica_),
-            cloneNode(this._mais_),
-            cloneNode(this._termoAritmetico_));
+            cloneNode(this._esquerda_),
+            cloneNode(this._direita_));
     }
 
     @Override
@@ -45,16 +40,16 @@ public final class ASomaExpAritmetica extends PExpAritmetica
         ((Analysis) sw).caseASomaExpAritmetica(this);
     }
 
-    public PExpAritmetica getExpAritmetica()
+    public PExpAritmetica getEsquerda()
     {
-        return this._expAritmetica_;
+        return this._esquerda_;
     }
 
-    public void setExpAritmetica(PExpAritmetica node)
+    public void setEsquerda(PExpAritmetica node)
     {
-        if(this._expAritmetica_ != null)
+        if(this._esquerda_ != null)
         {
-            this._expAritmetica_.parent(null);
+            this._esquerda_.parent(null);
         }
 
         if(node != null)
@@ -67,19 +62,19 @@ public final class ASomaExpAritmetica extends PExpAritmetica
             node.parent(this);
         }
 
-        this._expAritmetica_ = node;
+        this._esquerda_ = node;
     }
 
-    public TMais getMais()
+    public PExpAritmetica getDireita()
     {
-        return this._mais_;
+        return this._direita_;
     }
 
-    public void setMais(TMais node)
+    public void setDireita(PExpAritmetica node)
     {
-        if(this._mais_ != null)
+        if(this._direita_ != null)
         {
-            this._mais_.parent(null);
+            this._direita_.parent(null);
         }
 
         if(node != null)
@@ -92,62 +87,30 @@ public final class ASomaExpAritmetica extends PExpAritmetica
             node.parent(this);
         }
 
-        this._mais_ = node;
-    }
-
-    public PTermoAritmetico getTermoAritmetico()
-    {
-        return this._termoAritmetico_;
-    }
-
-    public void setTermoAritmetico(PTermoAritmetico node)
-    {
-        if(this._termoAritmetico_ != null)
-        {
-            this._termoAritmetico_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._termoAritmetico_ = node;
+        this._direita_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expAritmetica_)
-            + toString(this._mais_)
-            + toString(this._termoAritmetico_);
+            + toString(this._esquerda_)
+            + toString(this._direita_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expAritmetica_ == child)
+        if(this._esquerda_ == child)
         {
-            this._expAritmetica_ = null;
+            this._esquerda_ = null;
             return;
         }
 
-        if(this._mais_ == child)
+        if(this._direita_ == child)
         {
-            this._mais_ = null;
-            return;
-        }
-
-        if(this._termoAritmetico_ == child)
-        {
-            this._termoAritmetico_ = null;
+            this._direita_ = null;
             return;
         }
 
@@ -158,21 +121,15 @@ public final class ASomaExpAritmetica extends PExpAritmetica
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expAritmetica_ == oldChild)
+        if(this._esquerda_ == oldChild)
         {
-            setExpAritmetica((PExpAritmetica) newChild);
+            setEsquerda((PExpAritmetica) newChild);
             return;
         }
 
-        if(this._mais_ == oldChild)
+        if(this._direita_ == oldChild)
         {
-            setMais((TMais) newChild);
-            return;
-        }
-
-        if(this._termoAritmetico_ == oldChild)
-        {
-            setTermoAritmetico((PTermoAritmetico) newChild);
+            setDireita((PExpAritmetica) newChild);
             return;
         }
 

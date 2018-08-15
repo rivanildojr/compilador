@@ -113,84 +113,132 @@ Ignored Tokens
 	comentario_bloco_fim,
 	comentario_linha;
 
-Productions
+Productions 
 
-	start = {start} programa id inicio declaracao_list? corpo? fim_programa;
+    start {-> P.start} = {start} programa id inicio declaracao* comandos* fim_programa {-> New start ([declaracao], [comandos])};
+
+
+    declaracao {-> P.declaracao} = {declaracao_c} constante id valor ponto_virgula {-> New declaracao.declaracao_c (id , valor)} |
+    							   {declaracao_m} tipo dois_pontos var+ ponto_virgula {-> New declaracao.declaracao_m ([var])};
 	
-	declaracao_list = {simples_dec} declaracao | {multiplo_dec} declaracao_list declaracao;
-	
-	declaracao = {dec_multiplo} declaracao_multipla 
-				 | {des_const} declaracao_constante;
-	
-	declaracao_multipla = {declaracao_m} tipo dois_pontos var_list? var ponto_virgula;
-	
-	declaracao_constante = {declaracao_m} constante id valor ponto_virgula;
-				
-	var_v = {var_v} var virgula;
-	
-	var_list = {simples_var} var_v | {multiplo_var} var_list var_v;
-	
-	tipo = {real} real | {inteiro} inteiro | {caractere} caractere | {booleano} booleano;
-	
-	var = {id} id | {vetor} id esq_colchete n_inteiro dir_colchete;
-	
-	valor = {string} string | {n_inteiro} n_inteiro | {n_real} n_real;
-	
-	corpo = {comando_s} comando | {comando_m} corpo comando;
-	
-	exp = {exp_l} exp_logica | {exp_a} exp_aritmetica;
-	
-	exp_v = {exp_v} exp virgula;
-	
-	exp_list = {exp_s} exp_v | {exp_m} exp_list exp_v;
-	
-	senao_se = {senao_se} senao corpo;
-	
-	caso_avalie = {caso_avalie} caso valor dois_pontos corpo;
-	
-	senao_avalie = {senao_avalie} senao dois_pontos corpo;
-	
-	n_inteiro_inicio = {inteiro_inicio} n_inteiro;
-	
-	n_inteiro_fim = {inteiro_fim} n_inteiro;
-	
-	n_inteiro_passo = {inteiro_passo} n_inteiro;
-	
-	comando = {atribuicao} var atribuicao exp ponto_virgula
-			| {leia} leia esq_parentese var_list? var dir_parentese ponto_virgula
-			| {escreva} escreva esq_parentese exp_list? exp dir_parentese ponto_virgula
-			| {se} se esq_parentese exp_logica dir_parentese entao corpo senao_se? fim_se ponto_virgula
-			| {avalie} avalie esq_parentese exp dir_parentese caso_avalie? senao_avalie? fim_avalie ponto_virgula
-			| {enquanto} enquanto esq_parentese exp_logica dir_parentese faca corpo fim_enquanto ponto_virgula
-			| {repita} repita corpo ate esq_parentese exp_logica dir_parentese ponto_virgula
-			| {para} para var de n_inteiro_inicio ate n_inteiro_fim faca corpo fim_para ponto_virgula
-			| {para_passo} para var de n_inteiro_inicio passo n_inteiro_passo ate n_inteiro_fim faca corpo fim_para ponto_virgula;
-	
-	exp_aritmetica = {soma} exp_aritmetica mais termo_aritmetico
-					| {menos} exp_aritmetica menos termo_aritmetico
-					| {termo} termo_aritmetico;
-	
-	termo_aritmetico = {mult} termo_aritmetico mult fator_aritmetico 
-					|	{div} termo_aritmetico div fator_aritmetico
-					|   {fator} fator_aritmetico;
-	
-	fator_aritmetico = {exp_parenteses} esq_parentese exp_aritmetica dir_parentese
-					|   {valor} valor
-					|	{menos} menos fator_aritmetico
-					|	{var} var;
-					
-	exp_logica = {e} exp_logica e termo_logico
-			   | {ou} exp_logica ou termo_logico
-			   | {nao} nao termo_logico
-			   | {xor} exp_logica xor termo_logico
-			   | {termo_l} termo_logico;
-	
-	termo_logico = {explo_parenteses} esq_parentese exp_logica dir_parentese
-			   	|  {relacional} exp_relacional;
-			   	
-	exp_relacional = {igual} exp_aritmetica igual termo_aritmetico
-				   | {diferente} exp_aritmetica diferente termo_aritmetico
-				   | {menor_igual} exp_aritmetica menor_igual termo_aritmetico
-				   | {maior_igual} exp_aritmetica maior_igual termo_aritmetico
-				   | {menor} exp_aritmetica menor termo_aritmetico
-				   | {maior} exp_aritmetica maior termo_aritmetico;
+    var_v = {var_v} var virgula;
+
+    var_list = {var_list} var_v+;
+
+    tipo {-> P.tipo  } = {real} real {-> New tipo.real (real)}   |
+    					 {inteiro} inteiro {-> New tipo.inteiro (inteiro)}   |
+    					 {caractere} caractere {-> New tipo.caractere (caractere)}   |
+    					 {booleano} booleano {-> New tipo.booleano (booleano)};
+
+    var {-> P.var} = {id} id {-> New var.id (id)}   |
+    				 {vetor} id esq_colchete n_inteiro dir_colchete {-> New var.vetor (id, n_inteiro)};
+
+    valor {-> P.valor} = {string} string {-> New valor.string (string)}   |
+    					 {n_inteiro} n_inteiro {-> New valor.n_inteiro (n_inteiro)}   |
+    					 {n_real} n_real {-> New valor.n_real (n_real)};
+
+    exp {-> P.exp} = {exp_l} exp_logica   |
+    				 {exp_a} exp_aritmetica;
+
+    exp_v = {exp_v} exp virgula;
+
+    exp_list = {exp_list} exp_v+;
+
+    senao_se = {senao_se} senao comandos+;
+
+    caso_avalie = {caso_avalie} caso valor dois_pontos comandos+;
+
+    senao_avalie = {senao_avalie} senao dois_pontos comandos+;
+
+    comandos = {atribuicao} var atribuicao exp ponto_virgula {-> New comandos.atribuicao(var, exp)}
+			| {leia} leia esq_parentese var_list? var dir_parentese ponto_virgula {-> New comandos.leia([var])}
+			| {escreva} escreva esq_parentese exp_list? exp dir_parentese ponto_virgula {-> New comandos.escreva([exp])}
+			| {se} se esq_parentese exp_logica dir_parentese entao comandos+ senao_se? fim_se ponto_virgula {-> New comandos.se(exp_logica)}
+			| {avalie} avalie esq_parentese exp dir_parentese caso_avalie* senao_avalie? fim_avalie ponto_virgula {-> New comandos.avalie(exp)}
+			| {enquanto} enquanto esq_parentese exp_logica dir_parentese faca comandos+ fim_enquanto ponto_virgula {-> New comandos.enquanto(exp_logica)}
+			| {repita} repita comandos+ ate esq_parentese exp_logica dir_parentese ponto_virgula {-> New comandos.repita(exp_logica)}
+			| {para} para var de [inicio]:n_inteiro ate [fim]:n_inteiro faca comandos+ fim_para ponto_virgula {-> New comandos.para(var, inicio, fim)}
+			| {para_passo} para var de [inicio]:n_inteiro passo [passos]:n_inteiro ate [fim]:n_inteiro faca comandos+ fim_para ponto_virgula {-> New comandos.para_passo(var, inicio, passos, fim)}; 
+
+    exp_aritmetica {-> P.exp_aritmetica} = {soma} exp_aritmetica mais termo_aritmetico {-> New exp_aritmetica.soma (exp_aritmetica , termo_aritmetico.exp_aritmetica)}   |
+    									   {subtracao} exp_aritmetica menos termo_aritmetico {-> New exp_aritmetica.subtracao (exp_aritmetica, termo_aritmetico.exp_aritmetica)}   |
+    									   {termo} termo_aritmetico {-> termo_aritmetico.exp_aritmetica};
+
+    termo_aritmetico {-> P.exp_aritmetica} = {mult} termo_aritmetico mult fator_aritmetico {-> New exp_aritmetica.mult (termo_aritmetico.exp_aritmetica, fator_aritmetico.exp_aritmetica)}   |
+    										 {div} termo_aritmetico div fator_aritmetico {-> New exp_aritmetica.div (termo_aritmetico.exp_aritmetica, fator_aritmetico.exp_aritmetica)}   |
+    										 {fator} fator_aritmetico {-> fator_aritmetico.exp_aritmetica};
+
+    fator_aritmetico {-> P.exp_aritmetica} = {exp_parenteses} esq_parentese exp_aritmetica dir_parentese {-> New exp_aritmetica.exp_parenteses (exp_aritmetica)}   |
+    										 {valor} valor {-> New exp_aritmetica.valor (valor)}   |
+    										 {menos} menos fator_aritmetico {-> New exp_aritmetica.menos (fator_aritmetico.exp_aritmetica)} |
+    										 {var} var {-> New exp_aritmetica.var (var)};
+
+    exp_logica {-> P.exp_logica} = {e} exp_logica e termo_logico {-> New exp_logica.e (exp_logica, termo_logico.exp_logica)}   |
+    							   {ou} exp_logica ou termo_logico {-> New exp_logica.ou (exp_logica, termo_logico.exp_logica)}   |
+    							   {nao} nao termo_logico {-> New exp_logica.nao (termo_logico.exp_logica)}   |
+    							   {xor} exp_logica xor termo_logico {-> New exp_logica.xor (exp_logica, termo_logico.exp_logica)}   |
+    							   {termo_l} termo_logico {-> termo_logico.exp_logica};
+
+    termo_logico {-> P.exp_logica} = {explo_parenteses} esq_parentese exp_logica dir_parentese {-> exp_logica}   |
+    								 {relacional} exp_relacional {->exp_relacional.exp_logica};
+
+    exp_relacional {-> P.exp_logica} = {igual} [esquerda]:exp_aritmetica igual [direita]:exp_aritmetica {-> New exp_logica.igual(esquerda.exp_aritmetica, direita.exp_aritmetica)} |
+    								   {diferente} [esquerda]:exp_aritmetica diferente [direita]:exp_aritmetica {-> New exp_logica.diferente (esquerda.exp_aritmetica, direita.exp_aritmetica)}   |
+    								   {menor_igual} [esquerda]:exp_aritmetica menor_igual [direita]:exp_aritmetica {-> New exp_logica.menor_igual (esquerda.exp_aritmetica, direita.exp_aritmetica)}   |
+    								   {maior_igual} [esquerda]:exp_aritmetica maior_igual [direita]:exp_aritmetica {-> New exp_logica.maior_igual (esquerda.exp_aritmetica, direita.exp_aritmetica)}   |
+    								   {menor} [esquerda]:exp_aritmetica menor [direita]:exp_aritmetica {-> New exp_logica.menor (esquerda.exp_aritmetica, direita.exp_aritmetica)}   |
+    								   {maior} [esquerda]:exp_aritmetica maior [direita]:exp_aritmetica {-> New exp_logica.maior (esquerda.exp_aritmetica, direita.exp_aritmetica)};
+
+
+Abstract Syntax Tree
+
+    start = declaracao* comandos*;
+
+    declaracao = {declaracao_c} id valor |
+    			 {declaracao_m} var+;
+
+    tipo = {real} real | 
+     	   {inteiro} inteiro | 
+     	   {caractere} caractere | 
+     	   {booleano} booleano;
+
+    var = {id} id | 
+          {vetor} id n_inteiro;
+
+    valor = {string} string | 
+     		{n_inteiro} n_inteiro | 
+     	    {n_real} n_real;
+
+    exp = {exp_l} exp_logica | 
+          {exp_a} exp_aritmetica;
+
+    comandos = {atribuicao} var exp | 
+     		  {leia} var+ | 
+     		  {escreva} exp+ | 
+     		  {se} exp_logica | 
+     		  {avalie} exp | 
+     		  {enquanto} exp_logica | 
+     		  {repita}  exp_logica | 
+     		  {para} var [inicio]:n_inteiro [fim]:n_inteiro | 
+     		  {para_passo} var [inicio]:n_inteiro [passos]:n_inteiro [fim]:n_inteiro;
+
+    exp_aritmetica = {soma} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     				 {subtracao} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     				 {mult} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     				 {div} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     				 {exp_parenteses} exp_aritmetica | 
+     				 {valor} valor | 
+     				 {menos} exp_aritmetica | 
+     				 {var} var;
+
+    exp_logica = {e} [esquerda]:exp_logica [direita]:exp_logica | 
+     			 {ou} [esquerda]:exp_logica [direita]:exp_logica | 
+     			 {nao} exp_logica | 
+     			 {xor} [esquerda]:exp_logica [direita]:exp_logica | 
+     			 {explo_parenteses} exp_logica |  
+     			 {igual} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     			 {diferente} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     			 {menor_igual} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     			 {maior_igual} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     			 {menor} [esquerda]:exp_aritmetica [direita]:exp_aritmetica | 
+     			 {maior} [esquerda]:exp_aritmetica [direita]:exp_aritmetica;

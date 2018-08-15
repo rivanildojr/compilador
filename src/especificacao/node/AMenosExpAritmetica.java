@@ -8,8 +8,6 @@ import especificacao.analysis.*;
 public final class AMenosExpAritmetica extends PExpAritmetica
 {
     private PExpAritmetica _expAritmetica_;
-    private TMenos _menos_;
-    private PTermoAritmetico _termoAritmetico_;
 
     public AMenosExpAritmetica()
     {
@@ -17,16 +15,10 @@ public final class AMenosExpAritmetica extends PExpAritmetica
     }
 
     public AMenosExpAritmetica(
-        @SuppressWarnings("hiding") PExpAritmetica _expAritmetica_,
-        @SuppressWarnings("hiding") TMenos _menos_,
-        @SuppressWarnings("hiding") PTermoAritmetico _termoAritmetico_)
+        @SuppressWarnings("hiding") PExpAritmetica _expAritmetica_)
     {
         // Constructor
         setExpAritmetica(_expAritmetica_);
-
-        setMenos(_menos_);
-
-        setTermoAritmetico(_termoAritmetico_);
 
     }
 
@@ -34,9 +26,7 @@ public final class AMenosExpAritmetica extends PExpAritmetica
     public Object clone()
     {
         return new AMenosExpAritmetica(
-            cloneNode(this._expAritmetica_),
-            cloneNode(this._menos_),
-            cloneNode(this._termoAritmetico_));
+            cloneNode(this._expAritmetica_));
     }
 
     @Override
@@ -70,63 +60,11 @@ public final class AMenosExpAritmetica extends PExpAritmetica
         this._expAritmetica_ = node;
     }
 
-    public TMenos getMenos()
-    {
-        return this._menos_;
-    }
-
-    public void setMenos(TMenos node)
-    {
-        if(this._menos_ != null)
-        {
-            this._menos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._menos_ = node;
-    }
-
-    public PTermoAritmetico getTermoAritmetico()
-    {
-        return this._termoAritmetico_;
-    }
-
-    public void setTermoAritmetico(PTermoAritmetico node)
-    {
-        if(this._termoAritmetico_ != null)
-        {
-            this._termoAritmetico_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._termoAritmetico_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expAritmetica_)
-            + toString(this._menos_)
-            + toString(this._termoAritmetico_);
+            + toString(this._expAritmetica_);
     }
 
     @Override
@@ -136,18 +74,6 @@ public final class AMenosExpAritmetica extends PExpAritmetica
         if(this._expAritmetica_ == child)
         {
             this._expAritmetica_ = null;
-            return;
-        }
-
-        if(this._menos_ == child)
-        {
-            this._menos_ = null;
-            return;
-        }
-
-        if(this._termoAritmetico_ == child)
-        {
-            this._termoAritmetico_ = null;
             return;
         }
 
@@ -161,18 +87,6 @@ public final class AMenosExpAritmetica extends PExpAritmetica
         if(this._expAritmetica_ == oldChild)
         {
             setExpAritmetica((PExpAritmetica) newChild);
-            return;
-        }
-
-        if(this._menos_ == oldChild)
-        {
-            setMenos((TMenos) newChild);
-            return;
-        }
-
-        if(this._termoAritmetico_ == oldChild)
-        {
-            setTermoAritmetico((PTermoAritmetico) newChild);
             return;
         }
 

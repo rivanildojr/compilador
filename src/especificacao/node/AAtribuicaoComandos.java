@@ -5,51 +5,51 @@ package especificacao.node;
 import especificacao.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVetorVar extends PVar
+public final class AAtribuicaoComandos extends PComandos
 {
-    private TId _id_;
-    private TNInteiro _nInteiro_;
+    private PVar _var_;
+    private PExp _exp_;
 
-    public AVetorVar()
+    public AAtribuicaoComandos()
     {
         // Constructor
     }
 
-    public AVetorVar(
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TNInteiro _nInteiro_)
+    public AAtribuicaoComandos(
+        @SuppressWarnings("hiding") PVar _var_,
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setId(_id_);
+        setVar(_var_);
 
-        setNInteiro(_nInteiro_);
+        setExp(_exp_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AVetorVar(
-            cloneNode(this._id_),
-            cloneNode(this._nInteiro_));
+        return new AAtribuicaoComandos(
+            cloneNode(this._var_),
+            cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVetorVar(this);
+        ((Analysis) sw).caseAAtribuicaoComandos(this);
     }
 
-    public TId getId()
+    public PVar getVar()
     {
-        return this._id_;
+        return this._var_;
     }
 
-    public void setId(TId node)
+    public void setVar(PVar node)
     {
-        if(this._id_ != null)
+        if(this._var_ != null)
         {
-            this._id_.parent(null);
+            this._var_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class AVetorVar extends PVar
             node.parent(this);
         }
 
-        this._id_ = node;
+        this._var_ = node;
     }
 
-    public TNInteiro getNInteiro()
+    public PExp getExp()
     {
-        return this._nInteiro_;
+        return this._exp_;
     }
 
-    public void setNInteiro(TNInteiro node)
+    public void setExp(PExp node)
     {
-        if(this._nInteiro_ != null)
+        if(this._exp_ != null)
         {
-            this._nInteiro_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class AVetorVar extends PVar
             node.parent(this);
         }
 
-        this._nInteiro_ = node;
+        this._exp_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._id_)
-            + toString(this._nInteiro_);
+            + toString(this._var_)
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._id_ == child)
+        if(this._var_ == child)
         {
-            this._id_ = null;
+            this._var_ = null;
             return;
         }
 
-        if(this._nInteiro_ == child)
+        if(this._exp_ == child)
         {
-            this._nInteiro_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class AVetorVar extends PVar
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._id_ == oldChild)
+        if(this._var_ == oldChild)
         {
-            setId((TId) newChild);
+            setVar((PVar) newChild);
             return;
         }
 
-        if(this._nInteiro_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setNInteiro((TNInteiro) newChild);
+            setExp((PExp) newChild);
             return;
         }
 

@@ -5,51 +5,51 @@ package especificacao.node;
 import especificacao.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVetorVar extends PVar
+public final class ADivExpAritmetica extends PExpAritmetica
 {
-    private TId _id_;
-    private TNInteiro _nInteiro_;
+    private PExpAritmetica _esquerda_;
+    private PExpAritmetica _direita_;
 
-    public AVetorVar()
+    public ADivExpAritmetica()
     {
         // Constructor
     }
 
-    public AVetorVar(
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TNInteiro _nInteiro_)
+    public ADivExpAritmetica(
+        @SuppressWarnings("hiding") PExpAritmetica _esquerda_,
+        @SuppressWarnings("hiding") PExpAritmetica _direita_)
     {
         // Constructor
-        setId(_id_);
+        setEsquerda(_esquerda_);
 
-        setNInteiro(_nInteiro_);
+        setDireita(_direita_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AVetorVar(
-            cloneNode(this._id_),
-            cloneNode(this._nInteiro_));
+        return new ADivExpAritmetica(
+            cloneNode(this._esquerda_),
+            cloneNode(this._direita_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVetorVar(this);
+        ((Analysis) sw).caseADivExpAritmetica(this);
     }
 
-    public TId getId()
+    public PExpAritmetica getEsquerda()
     {
-        return this._id_;
+        return this._esquerda_;
     }
 
-    public void setId(TId node)
+    public void setEsquerda(PExpAritmetica node)
     {
-        if(this._id_ != null)
+        if(this._esquerda_ != null)
         {
-            this._id_.parent(null);
+            this._esquerda_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class AVetorVar extends PVar
             node.parent(this);
         }
 
-        this._id_ = node;
+        this._esquerda_ = node;
     }
 
-    public TNInteiro getNInteiro()
+    public PExpAritmetica getDireita()
     {
-        return this._nInteiro_;
+        return this._direita_;
     }
 
-    public void setNInteiro(TNInteiro node)
+    public void setDireita(PExpAritmetica node)
     {
-        if(this._nInteiro_ != null)
+        if(this._direita_ != null)
         {
-            this._nInteiro_.parent(null);
+            this._direita_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class AVetorVar extends PVar
             node.parent(this);
         }
 
-        this._nInteiro_ = node;
+        this._direita_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._id_)
-            + toString(this._nInteiro_);
+            + toString(this._esquerda_)
+            + toString(this._direita_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._id_ == child)
+        if(this._esquerda_ == child)
         {
-            this._id_ = null;
+            this._esquerda_ = null;
             return;
         }
 
-        if(this._nInteiro_ == child)
+        if(this._direita_ == child)
         {
-            this._nInteiro_ = null;
+            this._direita_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class AVetorVar extends PVar
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._id_ == oldChild)
+        if(this._esquerda_ == oldChild)
         {
-            setId((TId) newChild);
+            setEsquerda((PExpAritmetica) newChild);
             return;
         }
 
-        if(this._nInteiro_ == oldChild)
+        if(this._direita_ == oldChild)
         {
-            setNInteiro((TNInteiro) newChild);
+            setDireita((PExpAritmetica) newChild);
             return;
         }
 

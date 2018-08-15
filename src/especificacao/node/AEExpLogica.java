@@ -7,9 +7,8 @@ import especificacao.analysis.*;
 @SuppressWarnings("nls")
 public final class AEExpLogica extends PExpLogica
 {
-    private PExpLogica _expLogica_;
-    private TE _e_;
-    private PTermoLogico _termoLogico_;
+    private PExpLogica _esquerda_;
+    private PExpLogica _direita_;
 
     public AEExpLogica()
     {
@@ -17,16 +16,13 @@ public final class AEExpLogica extends PExpLogica
     }
 
     public AEExpLogica(
-        @SuppressWarnings("hiding") PExpLogica _expLogica_,
-        @SuppressWarnings("hiding") TE _e_,
-        @SuppressWarnings("hiding") PTermoLogico _termoLogico_)
+        @SuppressWarnings("hiding") PExpLogica _esquerda_,
+        @SuppressWarnings("hiding") PExpLogica _direita_)
     {
         // Constructor
-        setExpLogica(_expLogica_);
+        setEsquerda(_esquerda_);
 
-        setE(_e_);
-
-        setTermoLogico(_termoLogico_);
+        setDireita(_direita_);
 
     }
 
@@ -34,9 +30,8 @@ public final class AEExpLogica extends PExpLogica
     public Object clone()
     {
         return new AEExpLogica(
-            cloneNode(this._expLogica_),
-            cloneNode(this._e_),
-            cloneNode(this._termoLogico_));
+            cloneNode(this._esquerda_),
+            cloneNode(this._direita_));
     }
 
     @Override
@@ -45,16 +40,16 @@ public final class AEExpLogica extends PExpLogica
         ((Analysis) sw).caseAEExpLogica(this);
     }
 
-    public PExpLogica getExpLogica()
+    public PExpLogica getEsquerda()
     {
-        return this._expLogica_;
+        return this._esquerda_;
     }
 
-    public void setExpLogica(PExpLogica node)
+    public void setEsquerda(PExpLogica node)
     {
-        if(this._expLogica_ != null)
+        if(this._esquerda_ != null)
         {
-            this._expLogica_.parent(null);
+            this._esquerda_.parent(null);
         }
 
         if(node != null)
@@ -67,19 +62,19 @@ public final class AEExpLogica extends PExpLogica
             node.parent(this);
         }
 
-        this._expLogica_ = node;
+        this._esquerda_ = node;
     }
 
-    public TE getE()
+    public PExpLogica getDireita()
     {
-        return this._e_;
+        return this._direita_;
     }
 
-    public void setE(TE node)
+    public void setDireita(PExpLogica node)
     {
-        if(this._e_ != null)
+        if(this._direita_ != null)
         {
-            this._e_.parent(null);
+            this._direita_.parent(null);
         }
 
         if(node != null)
@@ -92,62 +87,30 @@ public final class AEExpLogica extends PExpLogica
             node.parent(this);
         }
 
-        this._e_ = node;
-    }
-
-    public PTermoLogico getTermoLogico()
-    {
-        return this._termoLogico_;
-    }
-
-    public void setTermoLogico(PTermoLogico node)
-    {
-        if(this._termoLogico_ != null)
-        {
-            this._termoLogico_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._termoLogico_ = node;
+        this._direita_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expLogica_)
-            + toString(this._e_)
-            + toString(this._termoLogico_);
+            + toString(this._esquerda_)
+            + toString(this._direita_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expLogica_ == child)
+        if(this._esquerda_ == child)
         {
-            this._expLogica_ = null;
+            this._esquerda_ = null;
             return;
         }
 
-        if(this._e_ == child)
+        if(this._direita_ == child)
         {
-            this._e_ = null;
-            return;
-        }
-
-        if(this._termoLogico_ == child)
-        {
-            this._termoLogico_ = null;
+            this._direita_ = null;
             return;
         }
 
@@ -158,21 +121,15 @@ public final class AEExpLogica extends PExpLogica
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expLogica_ == oldChild)
+        if(this._esquerda_ == oldChild)
         {
-            setExpLogica((PExpLogica) newChild);
+            setEsquerda((PExpLogica) newChild);
             return;
         }
 
-        if(this._e_ == oldChild)
+        if(this._direita_ == oldChild)
         {
-            setE((TE) newChild);
-            return;
-        }
-
-        if(this._termoLogico_ == oldChild)
-        {
-            setTermoLogico((PTermoLogico) newChild);
+            setDireita((PExpLogica) newChild);
             return;
         }
 

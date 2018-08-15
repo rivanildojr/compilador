@@ -5,16 +5,16 @@ package especificacao.node;
 import especificacao.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANaoExpLogica extends PExpLogica
+public final class AEnquantoComandos extends PComandos
 {
     private PExpLogica _expLogica_;
 
-    public ANaoExpLogica()
+    public AEnquantoComandos()
     {
         // Constructor
     }
 
-    public ANaoExpLogica(
+    public AEnquantoComandos(
         @SuppressWarnings("hiding") PExpLogica _expLogica_)
     {
         // Constructor
@@ -25,14 +25,14 @@ public final class ANaoExpLogica extends PExpLogica
     @Override
     public Object clone()
     {
-        return new ANaoExpLogica(
+        return new AEnquantoComandos(
             cloneNode(this._expLogica_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANaoExpLogica(this);
+        ((Analysis) sw).caseAEnquantoComandos(this);
     }
 
     public PExpLogica getExpLogica()

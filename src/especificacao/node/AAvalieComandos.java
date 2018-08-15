@@ -5,46 +5,46 @@ package especificacao.node;
 import especificacao.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ANaoExpLogica extends PExpLogica
+public final class AAvalieComandos extends PComandos
 {
-    private PExpLogica _expLogica_;
+    private PExp _exp_;
 
-    public ANaoExpLogica()
+    public AAvalieComandos()
     {
         // Constructor
     }
 
-    public ANaoExpLogica(
-        @SuppressWarnings("hiding") PExpLogica _expLogica_)
+    public AAvalieComandos(
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setExpLogica(_expLogica_);
+        setExp(_exp_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ANaoExpLogica(
-            cloneNode(this._expLogica_));
+        return new AAvalieComandos(
+            cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseANaoExpLogica(this);
+        ((Analysis) sw).caseAAvalieComandos(this);
     }
 
-    public PExpLogica getExpLogica()
+    public PExp getExp()
     {
-        return this._expLogica_;
+        return this._exp_;
     }
 
-    public void setExpLogica(PExpLogica node)
+    public void setExp(PExp node)
     {
-        if(this._expLogica_ != null)
+        if(this._exp_ != null)
         {
-            this._expLogica_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ANaoExpLogica extends PExpLogica
             node.parent(this);
         }
 
-        this._expLogica_ = node;
+        this._exp_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expLogica_);
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expLogica_ == child)
+        if(this._exp_ == child)
         {
-            this._expLogica_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ANaoExpLogica extends PExpLogica
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expLogica_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setExpLogica((PExpLogica) newChild);
+            setExp((PExp) newChild);
             return;
         }
 
